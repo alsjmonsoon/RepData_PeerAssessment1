@@ -57,7 +57,8 @@ DFbyDay<-activityDF%>%
 # DFbyDay<-aggregate(activityDF$steps,by=list(activity$date),sum,na.rm=TRUE)
 ```
 
-#### *2. make a historgram of the total number of steps taken each day, please note: because there are full days with missing values (NAs), the aggregate() and dplyr's summarise() did not ingore the NAs, therefore it reports 0 for those days with NAs. Therefore you will see the big spike in the histogram at x-axis (~0:00). This is due to the 0 reported (instead of NAs). Please also note: that I have made the y scales for two histograms (this one and figure 3) at the same scale for the comparison purpose*
+#### *2. make a historgram of the total number of steps taken each day*
+**Please note: because there are full days with missing values (NAs), the aggregate() and dplyr's summarise() did not ingore the NAs, therefore it reports 0 for those days with NAs. Therefore you will see the big spike in the histogram at x-axis (~0:00). This is due to the 0 reported (instead of NAs). Please also note: that I have made the y scales for two histograms (this one and figure 3) at the same scale for the comparison purpose**
 
 ```{r Plot1, fig.height = 6, fig.width = 6, fig.align='center', message=FALSE, warning=FALSE, echo=TRUE }
 ggplot(DFbyDay, aes(x=total.steps))+
@@ -129,7 +130,7 @@ sum(is.na(activity$steps))
 
 #### *2. Devise a strategy for filling in all the missing values in the dataset*
 
-After reading the Course Disucssion Forum thread "Imputation", I decided to substitute the NAs of each 5-min interval with the correponding interval mean caculated (in part 3), because the 5-min interval mean is the very representative. For example, I think that it is more appropriate to fill in 0 steps for 01:55 time interval, rather than the mean steps taken per day. 
+**After reading the Course Disucssion Forum thread "Imputation", I decided to substitute the NAs of each 5-min interval with the correponding interval mean caculated (in part 3), because the 5-min interval mean is the very representative. For example, I think that it is more appropriate to fill in 0 steps for 01:55 time interval, rather than the mean steps taken per day.** 
 
 ```{r,echo=TRUE}
 # derive the weekday for the data and add a new column into the orginal data
@@ -218,7 +219,7 @@ comparisonDF
 
 #### *4.3 Interpreting the data and conclusion: Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?*   
 
-By using my strategy of filling the missing values, we can see there is almost no difference for the median and the mean from the filled and not filled data. Therefore, the imputation of the missing data in this case did not really affect the total daily number of steps. However, the difference may occur depending on which strategy you use for filling in all missing values.
+**By using my strategy of filling the missing values, we can see there is almost no difference for the median and the mean from the filled and not filled data. Therefore, the imputation of the missing data in this case did not really affect the total daily number of steps. However, the difference may occur depending on which strategy you use for filling in all missing values.**
 
 
 ## Are there differences in activity patterns between weekdays and weekends?
@@ -264,4 +265,4 @@ ggplot(intervalDF2,aes(x=interval,y=meanStep))+
   
 #### *3. Interpreting the data: Are there differences in activity patterns between weekdays and weekends?*
 
-Yes, there are clear patterns between weekdays and weekends. From the panel plot, we can clearly see that although the overall acitivity on the weekends has increased from 10:00 to 24:00, the activity between 05:00 and 10:00 on the weekends is lower that those on the weekdays. This fits to our general habit--that is, we rest more in the mornig (sleep in) during the weekend, and more active during the weekdays (because we have to go to work).
+**Yes, there are clear patterns between weekdays and weekends. From the panel plot, we can clearly see that although the overall acitivity on the weekends has increased from 10:00 to 24:00, the activity between 05:00 and 10:00 on the weekends is lower that those on the weekdays. This fits to our general habit--that is, we rest more in the mornig (sleep in) during the weekend, and more active during the weekdays (because we have to go to work).**
